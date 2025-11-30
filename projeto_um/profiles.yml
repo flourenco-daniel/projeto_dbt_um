@@ -1,0 +1,10 @@
+projeto_um:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: projeto-dbt-479500
+      dataset: "{{env_var('DBT_DATASET', 'projeto_um_dbt')}}"
+      threads: 4
+      keyfile: /home/daniel/projeto_dbt_um/projeto_um/projeto-dbt-479500-a3e67a36f72b.json
