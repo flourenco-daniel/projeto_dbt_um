@@ -18,5 +18,29 @@ clean-targets:
 
 models:
   projeto_um:
-    example:
-      +materialized: view
+
+    staging:
+      schema: staging
+      +materialized: table
+      tags: ['staging']
+
+    intermediate:
+      schema: intermediate
+      +materialized: ephemeral
+      tags: ['intermediate']
+
+    marts:
+      schema: marts
+      +materialized: table
+      tags: ['marts']
+
+seeds:
+  projeto_um:
+    schema: raw
+    tags: ['seeds']
+    format: csv
+    header: true
+    delimiter: ','
+
+
+  
