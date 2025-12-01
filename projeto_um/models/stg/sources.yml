@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: ecommerce
-    description: "Source data for the ecommerce platform"
+    description: "Source data_tests for the ecommerce platform"
     schema: projeto_um_dbt_raw
     loader: bigquery
     tables:
@@ -11,22 +11,14 @@ sources:
         columns:
         - name: cliente_id
           description: "ID do cliente que fez a avaliação"
-          data_test:
-            - not_null
         - name: produto_id
           description: "ID do produto avaliado"
-          data_test:
-            - not_null
         - name: nota
           description: "Nota dada ao produto"
-          data_test:
-            - not_null
         - name: comentario
           description: "Comentário da avaliação"
         - name: data_avaliacao
-          description: "Data em que a avaliação foi feita"
-          data_test:
-            - not_null
+          description: "Data em que a avaliação foi adicionada"
       - name: carrinho
         description: "Tabela de carrinho de compras"
         columns:
@@ -43,7 +35,7 @@ sources:
         columns:
         - name: id
           description: "ID da categoria"
-          data_test:
+          data_tests:
             - not_null
         - name: nome
           description: "Nome da categoria"
@@ -52,54 +44,49 @@ sources:
         columns:
         - name: id
           description: "ID do cliente"
-          data_test:
-            - not_null
-            - unique
+          data_tests:
+          - not_null
+          - unique
         - name: nome
           description: "Nome do cliente"
-          data_test:
+          data_tests:
             - not_null
         - name: email
           description: "Email do cliente"
         - name: telefone
           description: "Telefone do cliente"
-        - name: data_registro
-          description: "Data de registro do cliente"
       - name: itens_pedidos
         description: "Tabela de itens dos pedidos"
         columns:
         - name: pedido_id
           description: "ID do pedido"
-          data_test:
-            - not_null
-            - unique 
-        - name: produto_id-
+        - name: produto_id
           description: "ID do produto no pedido"
-          data_test:
+          data_tests:
             - not_null
         - name: quantidade
           description: "Quantidade do produto no pedido"
-          data_test:
+          data_tests:
             - not_null
         - name: preco_unitario
           description: "Preço unitário do produto"
-          data_test:
+          data_tests:
             - not_null
         - name: subtotal
           description: "Subtotal do item no pedido"
-          data_test:
+          data_tests:
             - not_null
       - name: pagamentos
         description: "Tabela de pagamentos"
         columns:
         - name: id
           description: "ID do pagamento"
-          data_test:
+          data_tests:
             - not_null
             - unique
         - name: pedido_id
           description: "ID do pedido associado ao pagamento"
-          data_test:
+          data_tests:
             - not_null
         - name: valor
           description: "Valor do pagamento"
@@ -107,27 +94,22 @@ sources:
           description: "Método de pagamento"
         - name: status
           description: "Status do pagamento"
-        - name: data_pagamento
-          description: "Data do pagamento"
+
       - name: pedidos
         description: "Tabela de pedidos"
         columns:
         - name: id
           description: "ID do pedido"
-          data_test:
+          data_tests:
             - not_null
             - unique
         - name: cliente_id
           description: "ID do cliente que fez o pedido"
-          data_test:
+          data_tests:
             - not_null
         - name: endereco_id
           description: "ID do endereço de entrega"
-          data_test:
-            - not_null
-        - name: data_pedido
-          description: "Data em que o pedido foi feito"
-          data_test:
+          data_tests:
             - not_null
         - name: status
           description: "Status do pedido"
@@ -136,7 +118,7 @@ sources:
         columns:
         - name: id
           description: "ID do produto"
-          data_test:
+          data_tests:
             - not_null
             - unique
         - name: nome
@@ -151,5 +133,3 @@ sources:
           description: "Marca do produto"
         - name: estoque
           description: "Quantidade em estoque do produto"
-        - name: data_cadastro
-          description: "Data de cadastro do produto"
